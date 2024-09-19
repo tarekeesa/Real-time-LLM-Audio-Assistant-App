@@ -1,14 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  query,
-  collection,
-  orderBy,
-  onSnapshot,
-  limit,
-} from "firebase/firestore";
-import { db } from "../firebase";
+import { query, collection, orderBy, onSnapshot, limit } from "firebase/firestore";
+import { db } from "../utils/firebase"; // Firebase utils
 import Message from "./Message";
-import SendMessage from "./SendMessage";
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
@@ -21,17 +14,15 @@ const ChatBox = () => {
       limit(50)
     );
 
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      const fetchedMessages = [];
-      QuerySnapshot.forEach((doc) => {
-        fetchedMessages.push({ ...doc.data(), id: doc.id });
-      });
-      const sortedMessages = fetchedMessages.sort(
-        (a, b) => a.createdAt - b.createdAt
-      );
-      setMessages(sortedMessages);
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const fetchedMessages = querySnapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+      }));
+      setMessages(fetchedMessages.reverse()); // Ensure messages are in correct order
     });
-    return () => unsubscribe;
+
+    return () => unsubscribe();
   }, []);
 
   return (
@@ -41,9 +32,7 @@ const ChatBox = () => {
           <Message key={message.id} message={message} />
         ))}
       </div>
-      {/* when a new message enters the chat, the screen scrolls down to the scroll div */}
       <span ref={scroll}></span>
-      <SendMessage scroll={scroll} />
     </main>
   );
 };

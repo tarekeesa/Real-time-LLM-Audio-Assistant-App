@@ -1,9 +1,19 @@
-# Building a Real-time Chat App with ReactJs and Firebase. :writing_hand:
+# Real-time Audio Assistant App
 
-This is the code example for my article on [Building a Real-time Chat App with ReactJs and Firebase](https://www.freecodecamp.org/news/building-a-real-time-chat-app-with-reactjs-and-firebase/) for [FreeCodeCamp](https://freecodecamp.org/). Here is the [live demo](https://react-chat-timonwa.vercel.app/).
+A ReactJS-based LLM real-time audio assistant app integrated with Firebase, Groq, and Deepgram. This project leverages modern audio processing technologies to transcribe and analyze spoken input in real-time. 
 
-Visit my blog, [Timonwa's Notes](https://blog.timonwa.com), for awesome technical contents like articles, codesnippets, tech goodies, community projects and more.
+## Features
+- **User Authentication**: Powered by Firebase Authentication.
+- **Real-time Audio Processing**: Capture and process audio inputs using Groq API and Deepgram API.
+- **Firebase Integration**: Store and manage user data, including real-time interactions with the app.
+- **Clean UI**: Simple and easy-to-use interface for recording and processing audio.
 
-Please give this repo a ⭐ if it was helpful to you.
+## Technologies Used
+- **ReactJS**: Frontend framework for building user interfaces.
+- **Firebase**: For authentication, real-time database, and cloud storage.
+- **Groq**: API for audio processing and language translation.
+- **Deepgram**: Speech recognition and transcription API.
 
-![A screencast demo of the react chat app. I log in in with my Google account, the chat room shows up, then I log out](https://user-images.githubusercontent.com/63044364/211147631-d8b8a732-1572-4801-ba01-99a271b77bc4.gif)
+## Environment Variables
+To run this project, you will need to set up the following environment variables in a `.env` file at the root of your project:
+
